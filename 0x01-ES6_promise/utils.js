@@ -6,7 +6,7 @@ export function uploadPhoto() {
 }
 
 export function createUser() {
-  return Promise.resolve({
+  return Promise.resole({
     firstName: 'Guillaume',
     lastName: 'Salva',
   });
