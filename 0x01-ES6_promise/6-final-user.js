@@ -3,28 +3,27 @@ import uploadPhoto from './5-photo-reject';
 
 // Return array with all user infos
 export default async function handleProfileSignup(firstName, lastName, fileName) {
-  const resultArray = [];
-
   return Promise
-    .all([
+    .allSettled([
       signUpUser(firstName, lastName),
-      uploadPhoto(fileName)
+      uploadPhoto(fileName),
     ])
-    .then((values) => {
-      for (const val of values) {
-        resultArray.push({
-          status: 'fulfilled',
-          value: val,
-        });
-      }
+    .then((results) => {
+      const resultArray = [];
 
-      return resultArray;
-    })
-    .catch((err) => {
-      resultArray.push({
-        status: 'rejected',
-        value: err.toString(),
-      });
+      for (const res of results) {
+        if (res.status === 'fulfilled') {
+          resultArray.push({
+            status: res.status,
+            value: res.value,
+          });
+        } else {
+          resultArray.push({
+            status: res.status,
+            value: res.reason.toString(),
+          });
+        }
+      }
 
       return resultArray;
     });
