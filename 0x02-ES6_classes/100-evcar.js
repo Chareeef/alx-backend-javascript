@@ -1,4 +1,4 @@
-import Car from "./10-car.js";
+import Car from './10-car';
 
 // `EVCar` class implementation (extending Car)
 export default class EVCar extends Car {
@@ -9,6 +9,12 @@ export default class EVCar extends Car {
 
   // Generate a new `Car` instance
   cloneCar() {
-    return new Car();
+    let car;
+
+    if (this.constructor === EVCar || this.constructor === Car) {
+      car = new Car();
+    }
+
+    return car;
   }
 }
