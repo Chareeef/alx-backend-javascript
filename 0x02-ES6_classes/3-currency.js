@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-
 // `Currency` class implementation
 export default class Currency {
   constructor(code, name) {

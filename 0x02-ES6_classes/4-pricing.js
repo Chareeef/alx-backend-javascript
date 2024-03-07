@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-
 // `Pricing` class implementation
 export default class Pricing {
   constructor(amount, currency) {

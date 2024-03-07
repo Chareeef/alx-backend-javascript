@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-
 // `Building` "abstract" class implementation
 export default class Building {
   constructor(sqft) {

@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-
 // `ClassRoom` class implementation
 export default class ClassRoom {
   constructor(maxStudentsSize) {

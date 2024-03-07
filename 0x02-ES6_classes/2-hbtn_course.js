@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-
 // `HolbertonCourse` class implementation
 export default class HolbertonCourse {
   constructor(name, length, students) {
