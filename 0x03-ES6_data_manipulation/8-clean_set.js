@@ -1,17 +1,17 @@
 // Returns a string of all the set values that
 // start with a specific string (startString).
 export default function cleanSet(set, startString) {
+  let fullString = '';
+
   if (!startString) {
-    return '';
+    return fullString;
   }
 
-  let fullString = Array.from(set).reduce((totalString, item) => {
+  for (const item of set) {
     if (item.startsWith(startString)) {
-      return `${totalString + item.slice(startString.length)}-`;
+      fullString += `${item.slice(startString.length)}-`;
     }
-
-    return totalString;
-  }, '');
+  }
 
   if (fullString[fullString.length - 1] === '-') {
     fullString = fullString.slice(0, fullString.length - 1);
