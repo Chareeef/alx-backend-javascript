@@ -8,4 +8,3 @@ export default function groceriesList() {
     ['Banana', 5],
   ]);
 }
-console.log(groceriesList());
