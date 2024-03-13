@@ -51,7 +51,24 @@ function createEmployee(salary: number | string): Director | Teacher {
   return new Director();
 }
 
+// Is `employee` a Director or not
+function isDirector(employee : Director | Teacher): boolean {
+  return (employee instanceof Director);
+}
+
+// Execute `employee`'s work
+function executeWork(employee: Director | Teacher): void {
+  if (employee instanceof Director) {
+    console.log(employee.workDirectorTasks());
+  } else {
+    console.log(employee.workTeacherTasks());
+  }
+}
+
 // Test:
-console.log(createEmployee(200));
-console.log(createEmployee(1000));
-console.log(createEmployee('$500'));
+
+// console.log(createEmployee(200));
+// console.log(createEmployee(1000));
+// console.log(createEmployee('$500'));
+// executeWork(createEmployee(200));
+// executeWork(createEmployee(1000));
