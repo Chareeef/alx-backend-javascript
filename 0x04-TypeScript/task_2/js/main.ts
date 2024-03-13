@@ -65,6 +65,13 @@ function executeWork(employee: Director | Teacher): void {
   }
 }
 
+// Subject type
+type Subject = 'Math' | 'History';
+
+function teachClass(todayClass: Subject): string {
+  return (todayClass === 'Math') ? 'Teaching Math' : 'Teaching History';
+}
+
 // Test:
 
 // console.log(createEmployee(200));
@@ -72,3 +79,5 @@ function executeWork(employee: Director | Teacher): void {
 // console.log(createEmployee('$500'));
 // executeWork(createEmployee(200));
 // executeWork(createEmployee(1000));
+// console.log(teachClass('Math'));
+// console.log(teachClass('History'));
