@@ -24,12 +24,38 @@ const ken: Student = {
 // Create studentsList array
 const studentsList: Student[] = [youssef, ken];
 
-// Create rendering table
-const studentsTable: [string, string][] = [];
+// Rendering table
+const table = document.createElement('table');
+const thead = document.createElement('thead');
+const tbody = document.createElement('tbody');
 
+// Create headers
+const headers = ['firstName', 'location'];
+const headerRow = document.createElement('tr');
+headers.forEach((header) => {
+  const th = document.createElement('th');
+  th.textContent = header;
+  headerRow.appendChild(th)
+});
+thead.appendChild(headerRow);
+table.appendChild(thead)
+
+// Create Rows
 studentsList.forEach((student) => {
-  studentsTable.push([student.firstName, student.location])
+  const tr = document.createElement('tr');
+
+  const firstNameCell = document.createElement('td');
+  firstNameCell.textContent = student.firstName;
+  tr.appendChild(firstNameCell);
+
+  const locationCell = document.createElement('td');
+  locationCell.textContent = student.location;
+  tr.appendChild(locationCell);
+
+  tbody.appendChild(tr);
 });
 
+table.appendChild(tbody);
+
 // Display the table
-console.log(studentsTable);
+document.body.appendChild(table)
