@@ -28,18 +28,8 @@ interface StudentInterface {
   displayName(): string;
 }
 
-interface StudentConstructor {
-  new (firstName: string, lastName: string): StudentInterface;
-}
-
 class Student implements StudentInterface {
-  firstName: string;
-  lastName: string;
-
-  constructor(firstName: string, lastName: string) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
+  constructor(public firstName: string, public lastName: string) {}
 
   workOnHomework(): string {
     return 'Currently working';
