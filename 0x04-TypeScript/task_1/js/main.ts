@@ -22,27 +22,63 @@ const printTeacher: printTeacherFunction = (
   (firstName, lastName) => `${firstName[0]}. ${lastName}`
 );
 
-// Test:
+// Implement Student Class through interfaces
+interface StudentInterface {
+  workOnHomework(): string;
+  displayName(): string;
+}
 
-const teacher: Teacher = {
-  firstName: 'John',
-  fullTimeEmployee: false,
-  lastName: 'Doe',
-  location: 'London',
-  contract: false,
-};
+interface StudentConstructor {
+  new (firstName: string, lastName: string): StudentInterface;
+}
 
-teacher.id = 1;
+class Student implements StudentInterface {
+  firstName: string;
+  lastName: string;
 
-console.log(teacher);
+  constructor(firstName: string, lastName: string) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
 
-const director1: Directors = {
-  firstName: 'John',
-  lastName: 'Doe',
-  location: 'London',
-  fullTimeEmployee: true,
-  numberOfReports: 17,
-};
-console.log(director1);
+  workOnHomework(): string {
+    return 'Currently working';
+  }
 
-console.log(printTeacher(teacher.firstName, teacher.lastName));
+  displayName(): string {
+    return this.firstName;
+  }
+}
+
+// Test Teacher:
+
+// const teacher: Teacher = {
+//   firstName: 'John',
+//   fullTimeEmployee: false,
+//   lastName: 'Doe',
+//   location: 'London',
+//   contract: false,
+// };
+// 
+// teacher.id = 1;
+// 
+// console.log(teacher);
+// console.log(printTeacher(teacher.firstName, teacher.lastName));
+
+// Test Directors:
+
+// const director: Directors = {
+//   firstName: 'John',
+//   lastName: 'Doe',
+//   location: 'London',
+//   fullTimeEmployee: true,
+//   numberOfReports: 17,
+// };
+//
+// console.log(director);
+
+// Test Student:
+
+const student = new Student('Youssef Charif', 'Hamidi');
+console.log(student.workOnHomework());
+console.log(student.displayName());
