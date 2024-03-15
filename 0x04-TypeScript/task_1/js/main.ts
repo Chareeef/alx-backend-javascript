@@ -69,6 +69,6 @@ class Student implements StudentInterface {
 
 // Test Student:
 
-const student = new Student('Youssef Charif', 'Hamidi');
-console.log(student.workOnHomework());
-console.log(student.displayName());
+// const student = new Student('Youssef Charif', 'Hamidi');
+// console.log(student.workOnHomework());
+// console.log(student.displayName());
