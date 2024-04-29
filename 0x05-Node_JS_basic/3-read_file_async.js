@@ -1,7 +1,8 @@
 #!/usr/bin/node
-const { readFileSync } = require('fs');
+const { readFile } = require('fs');
+const { promisify } = require('util');
 
-/* Read Synchronously the Database CSV file
+/* Read Asynchronously the Database CSV file
  *
  * Output example:
  *
@@ -10,9 +11,15 @@ const { readFileSync } = require('fs');
  * Number of students in SWE: 4. List: Guillaume, Joseph, Paul, Tommy
  */
 module.exports = function countStudents(path) {
-  try {
+  // Return a promise
+  const promiseReadFile = promisify(readFile);
+  return promiseReadFile(path, 'utf-8', ((err, data) => {
+    // Throw an error if some problem araised
+    if (err) {
+      throw new Error('Cannot load the database');
+    }
+
     // Read and parse data
-    const data = readFileSync(path, 'utf-8');
     const lines = data.split('\n').filter((line) => line !== '').slice(1);
     const items = lines.map((line) => line.split(','));
 
@@ -40,7 +47,5 @@ module.exports = function countStudents(path) {
         console.log(`Number of students in ${field}: ${count}. List: ${names}`);
       }
     }
-  } catch (err) {
-    throw new Error('Cannot load the database');
-  }
+  }));
 };
