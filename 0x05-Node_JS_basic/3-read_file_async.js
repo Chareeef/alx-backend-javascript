@@ -11,44 +11,45 @@ const { readFile } = require('fs');
  */
 module.exports = function countStudents(path) {
   // Return a promise
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     readFile(path, 'utf-8', ((err, data) => {
-      // Throw an error if some problem araised
+      // Reject with an error if some problem araised
       if (err) {
-        throw new Error('Cannot load the database');
-      }
+        const error = new Error('Cannot load the database');
+        reject(error);
+      } else {
+        // Read and parse data
+        const lines = data.split('\n').filter((line) => line !== '').slice(1);
+        const items = lines.map((line) => line.split(','));
 
-      // Read and parse data
-      const lines = data.split('\n').filter((line) => line !== '').slice(1);
-      const items = lines.map((line) => line.split(','));
+        // Log students number
+        console.log(`Number of students: ${items.length}`);
 
-      // Log students number
-      console.log(`Number of students: ${items.length}`);
+        // Group students by their study fields
+        const studentsByFields = {};
+        items.forEach((item) => {
+          const firstName = item[0];
+          const field = item[3];
 
-      // Group students by their study fields
-      const studentsByFields = {};
-      items.forEach((item) => {
-        const firstName = item[0];
-        const field = item[3];
+          if (!studentsByFields[field]) {
+            studentsByFields[field] = [firstName];
+          } else {
+            studentsByFields[field].push(firstName);
+          }
+        });
 
-        if (!studentsByFields[field]) {
-          studentsByFields[field] = [firstName];
-        } else {
-          studentsByFields[field].push(firstName);
+        // Display studentsByFields
+        for (const field in studentsByFields) {
+          if (Object.hasOwnProperty.call(studentsByFields, field)) {
+            const names = studentsByFields[field].join(', ');
+            const count = studentsByFields[field].length;
+            console.log(`Number of students in ${field}: ${count}. List: ${names}`);
+          }
         }
-      });
 
-      // Display studentsByFields
-      for (const field in studentsByFields) {
-        if (Object.hasOwnProperty.call(studentsByFields, field)) {
-          const names = studentsByFields[field].join(', ');
-          const count = studentsByFields[field].length;
-          console.log(`Number of students in ${field}: ${count}. List: ${names}`);
-        }
+        // Resolve the promise
+        resolve();
       }
-
-      // Resolve the promise
-      resolve();
     }));
   });
 };
