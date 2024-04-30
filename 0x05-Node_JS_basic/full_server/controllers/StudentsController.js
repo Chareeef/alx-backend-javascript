@@ -31,6 +31,7 @@ export default class StudentsController {
 
     if (!(['CS', 'SWE'].includes(major))) {
       res.status(500).send('Major parameter must be CS or SWE');
+      return;
     }
 
     readDatabase(process.argv[2]).then((studentsByFields) => {
