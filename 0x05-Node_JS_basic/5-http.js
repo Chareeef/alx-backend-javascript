@@ -58,7 +58,9 @@ const app = createServer((req, res) => {
     res.write('This is the list of our students\n');
     writeStudents(process.argv[2])
       .then((data) => res.end(data))
-      .catch((error) => res.end(`${error.toString()}\n`));
+      .catch((error) => {
+        res.end(error.stack + '\n');
+      });
   }
 }).listen(1245);
 
