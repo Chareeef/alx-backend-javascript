@@ -61,12 +61,8 @@ function writeStudents(path) {
 // Define 'GET /students' route
 app.get('/students', ((req, res) => {
   writeStudents(process.argv[2])
-    .then((data) => {
-      res.send(`This is the list of our students\n${data}`);
-    })
-    .catch((error) => {
-      res.send(error.stack);
-    });
+    .then((data) => res.send(`This is the list of our students\n${data}`))
+    .catch((error) => res.send(`This is the list of our students\n${error.message}`));
 }));
 
 // Listen on port 1245
