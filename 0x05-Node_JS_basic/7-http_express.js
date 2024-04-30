@@ -1,6 +1,14 @@
 #!/usr/bin/node
-const { createServer } = require('http');
+const express = require('express');
 const { readFile } = require('fs');
+
+// Create an Express app
+const app = express();
+
+// Define 'GET /' route
+app.get('/', ((req, res) => {
+  res.send('Hello Holberton School!');
+}));
 
 function writeStudents(path) {
   // Return a promise
@@ -19,7 +27,7 @@ function writeStudents(path) {
         const items = lines.map((line) => line.split(','));
 
         // Log students number
-        response += `Number of students: ${items.length}`;
+        response += `\nNumber of students: ${items.length}`;
 
         // Group students by their study fields
         const studentsByFields = {};
@@ -50,18 +58,20 @@ function writeStudents(path) {
   });
 }
 
-// Create an http server
-const app = createServer((req, res) => {
-  if (req.url === '/') {
-    res.end('Hello Holberton School!');
-  } else if (req.url === '/students') {
-    res.write('This is the list of our students\n');
-    writeStudents(process.argv[2])
-      .then((data) => res.end(data))
-      .catch((error) => {
-        res.end(`${error.stack}\n`);
-      });
-  }
-}).listen(1245);
+// Define 'GET /students' route
+app.get('/students', ((req, res) => {
+  const head = 'This is the list of our students\n';
+  writeStudents(process.argv[2])
+    .then((data) => {
+      res.send(`${head}${data}`);
+    })
+    .catch((error) => {
+      res.send(`${head}${error.stack}\n`);
+    });
+}));
 
+// Listen on port 1245
+app.listen(1245);
+
+// Export the app
 module.exports = app;
