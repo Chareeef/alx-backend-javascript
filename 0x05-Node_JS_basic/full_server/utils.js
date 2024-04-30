@@ -1,7 +1,8 @@
+#!/usr/bin/node
 import { readFile } from 'fs';
 
 // Read database asycnchronously
-export default function readDatabase(path) {
+function readDatabase(path) {
   // Return a promise
   return new Promise((resolve, reject) => {
     readFile(path, 'utf-8', ((err, data) => {
@@ -32,3 +33,5 @@ export default function readDatabase(path) {
     }));
   });
 }
+
+export default readDatabase;

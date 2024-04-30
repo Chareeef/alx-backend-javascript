@@ -2,7 +2,7 @@
 import readDatabase from '../utils';
 
 // StudentsController class
-export default class StudentsController {
+class StudentsController {
   static getAllStudents(req, res) {
     readDatabase(process.argv[2]).then((studentsByFields) => {
       // Build the response
@@ -43,3 +43,5 @@ export default class StudentsController {
       });
   }
 }
+
+export default StudentsController;
