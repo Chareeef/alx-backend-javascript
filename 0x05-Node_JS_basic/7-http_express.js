@@ -27,7 +27,7 @@ function writeStudents(path) {
         const items = lines.map((line) => line.split(','));
 
         // Log students number
-        response += `\nNumber of students: ${items.length}`;
+        response += `Number of students: ${items.length}`;
 
         // Group students by their study fields
         const studentsByFields = {};
@@ -60,13 +60,12 @@ function writeStudents(path) {
 
 // Define 'GET /students' route
 app.get('/students', ((req, res) => {
-  const head = 'This is the list of our students\n';
   writeStudents(process.argv[2])
     .then((data) => {
-      res.send(`${head}${data}`);
+      res.send(`This is the list of our students\n${data}`);
     })
     .catch((error) => {
-      res.send(`${head}${error.stack}\n`);
+      res.send(error.stack);
     });
 }));
 

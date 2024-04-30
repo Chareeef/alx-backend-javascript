@@ -55,11 +55,11 @@ const app = createServer((req, res) => {
   if (req.url === '/') {
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
-    res.write('This is the list of our students\n');
+    res.write('');
     writeStudents(process.argv[2])
-      .then((data) => res.end(data))
+      .then((data) => res.end(`This is the list of our students\n${data}`))
       .catch((error) => {
-        res.end(`${error.stack}\n`);
+        res.end(error.stack);
       });
   }
 }).listen(1245);
