@@ -59,7 +59,7 @@ const app = createServer((req, res) => {
     writeStudents(process.argv[2])
       .then((data) => res.end(data))
       .catch((error) => {
-        res.end(error.stack + '\n');
+        res.end(`${error.stack}\n`);
       });
   }
 }).listen(1245);
