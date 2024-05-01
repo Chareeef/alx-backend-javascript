@@ -1,5 +1,3 @@
-#!/usr/bin/node
-
 // AppController class
 class AppController {
   static getHomepage(req, res) {

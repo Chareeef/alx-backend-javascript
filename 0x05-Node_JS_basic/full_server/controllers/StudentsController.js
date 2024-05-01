@@ -1,4 +1,3 @@
-#!/usr/bin/node
 import readDatabase from '../utils';
 
 // StudentsController class

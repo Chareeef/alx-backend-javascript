@@ -1,4 +1,3 @@
-#!/usr/bin/node
 import { readFile } from 'fs';
 
 // Read database asycnchronously
