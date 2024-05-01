@@ -1,0 +1,15 @@
+{
+  "name": "0x06-unittests_in_js",
+  "version": "1.0.0",
+  "description": "Welcome to the wonderful world of unittesting in JavaScript! As software engineering learners, we are diving into the exciting realm of writing comprehensive tests for our code using Mocha, various assertion libraries, spies, stubs, hooks, and even integration testing with a small Node server. Let's embark on this journey together and unleash the power of testing in JavaScript!",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^5.1.0",
+    "mocha": "^10.4.0"
+  }
+}
