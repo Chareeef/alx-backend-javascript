@@ -25,9 +25,7 @@ app.get('/available_payments', (req, res) => {
 
 // 'POST /login' route
 app.post('/login', (req, res) => {
-  console.log(req.body);
-  const { userName } = req.body;
-  res.send(`Welcome ${userName}`);
+  res.send(`Welcome ${req.body.userName}`);
 });
 
 // Start server
