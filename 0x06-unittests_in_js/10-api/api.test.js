@@ -65,3 +65,47 @@ describe('Test \'GET /available_payments\' route', () => {
     });
   });
 });
+
+// Test our Express app 'POST /login' route
+describe('Test \'POST /login\' route', () => {
+
+  it('Returns 200 OK status code', (done) => {
+    request.post({
+      url: 'http://localhost:7865/login',
+      json: true,
+      body: { userName: 'Youssef' }
+    }, (error, response, body) => {
+      expect(response.statusCode).to.equal(200);
+      done();
+    });
+  });
+
+  it('Returns correct response with userName: \'Youssef\'', (done) => {
+    request.post({
+      url: 'http://localhost:7865/login',
+      json: true,
+      body: { userName: 'Youssef' }
+    }, (error, response, body) => {
+      expect(body).to.equal('Welcome Youssef');
+      done();
+    });
+  });
+
+  it('Returns correct response with userName: \'Meryam\'', (done) => {
+    request.post({
+      url: 'http://localhost:7865/login',
+      json: true,
+      body: { userName: 'Meryam' }
+    }, (error, response, body) => {
+      expect(body).to.equal('Welcome Meryam');
+      done();
+    });
+  });
+
+  it('Returns correct response with no userName', (done) => {
+    request.post({ url: 'http://localhost:7865/login' }, (error, response, body) => {
+      expect(body).to.equal('Welcome undefined');
+      done();
+    });
+  });
+});

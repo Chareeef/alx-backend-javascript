@@ -1,8 +1,12 @@
 const express = require('express');
+const bodyParser = require('body-parser')
 
 // Create app
 const app = express();
 const port = 7865
+
+// Use JSON parser
+app.use(bodyParser.json());
 
 // 'GET /' route
 app.get('/', (req, res) => {
@@ -18,6 +22,14 @@ app.get(/^\/cart\/(\d+)$/, (req, res) => {
 app.get('/available_payments', (req, res) => {
   res.json({ payment_methods: { credit_cards: true, paypal: false } });
 });
+
+// 'POST /login' route
+app.post('/login', (req, res) => {
+  console.log(req.body);
+  const { userName } = req.body;
+  res.send(`Welcome ${userName}`);
+});
+
 // Start server
 app.listen(port, () => {
   console.log('API available on localhost port 7865');
